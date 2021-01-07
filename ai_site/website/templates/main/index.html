@@ -1,0 +1,92 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Cases Belgium {% endblock %}
+{% block content %}
+
+<div class="container">
+    <main class="py-4">
+
+        <div class="row">
+          <div class="col-md">
+
+            <div id="container"></div>
+
+            
+          </div>
+          
+           
+        </div>
+        
+    </main>
+    
+  </div>
+  <div style="position:sticky; z-index: 1;">
+    <h1 style="  position: absolute;
+    bottom: 8px;
+    right: 16px;
+    font-size: 18px; text-align: center; color:rgba(0,0,0,0.5);">
+    Total cases: <br>
+    {{total}}</h1>
+  </div>
+
+<script>
+    //https://jsfiddle.net/gh/get/library/pure/highslide-software/highcharts.com/tree/master/samples/mapdata/countries/be/be-all?fbclid=IwAR2X8903aUmCnhlFH5HwUMpmQRubRrTbPBcxAZem_fgnP06BN2qNnOCPgh0
+    // Prepare demo data
+  // Data is joined to map using value of 'hc-key' property by default.
+  // See API docs for 'joinBy' for more info on linking data and map.
+  var data = [
+      ['be-3530', {{ brussel }}], //Brussel
+      ['be-3534', {{ westvlaanderen }}], //West-vlaanderen
+      ['be-3528', {{ liege }}], //Liege
+      ['be-3529', {{ waalsbrabant }}], //Waals-Brabant
+      ['be-3532', {{ vlaamsbrabant }}], //Vlaams-Brabant
+      ['be-489', {{ hennegouwen }}], //Hainaut
+      ['be-3535', {{ antwerpen }}], //Antwerpen
+      ['be-490', {{ limburg }}],//Limburg
+      ['be-3526', {{ namen }}], //Namur
+      ['be-3527', {{ luxemburg }}],//Luxembourg
+      ['be-3533', {{ oostvlaanderen }}] //Oost-Vlaanderen
+  ];
+  
+  // Create the chart
+  Highcharts.mapChart('container', {
+      chart: {
+          map: 'countries/be/be-all'
+      },
+  
+      title: {
+          text: 'Map of Belgium: Total amount of cases for each province <br> from 01-03-2020 till 02-01-2021'
+      },
+  
+      subtitle: {
+          text: 'Source map: <a href="http://code.highcharts.com/mapdata/countries/be/be-all.js">Belgium</a>'
+      },
+  
+      mapNavigation: {
+          enabled: true,
+          buttonOptions: {
+              verticalAlign: 'bottom'
+          }
+      },
+  
+      colorAxis: {
+          min: 0
+      },
+  
+      series: [{
+          data: data,
+          name: 'Cases',
+          states: {
+              hover: {
+                  color: '#BADA55'
+              }
+          },
+          dataLabels: {
+              enabled: true,
+              format: '{point.name}'
+          }
+      }]
+  });
+  
+  </script>
+{% endblock %}
