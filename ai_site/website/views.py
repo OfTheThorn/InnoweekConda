@@ -74,13 +74,11 @@ def index(response):
 
 def predictor(response):
     if response.method != "POST":
-        province="All"
-        start='2020-10-01'
-        end='2021-03-31'
-    else:
-        province = response.POST.get("province","All")
-        start = response.POST.get("start", '2020-10-01')
-        end = response.POST.get("end", '2021-03-31')
+        return render(response, "main/predictor.html")
+
+    province = response.POST.get("province", "All")
+    start = response.POST.get("start", '2020-10-01')
+    end = response.POST.get("end", '2021-03-31')
 
     if province == "All":
         train = get_time_series_total()

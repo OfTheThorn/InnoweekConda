@@ -1,6 +1,6 @@
 {% extends 'main/base.html' %}
 
-{% block title %} prediction Cases Belgium {% endblock %}
+{% block title %} Prediction Cases Belgium {% endblock %}
 {% block content %}
 
 <div class="container">
@@ -21,11 +21,11 @@
                 </div>
                 <div class="input-group mb-3">
                   <label class="input-group-text" for="start">Starts</label>
-                  <input type="date" class="form-control" id="start" name="start">
+                  <input type="date" class="form-control" id="start" name="start" value="2020-10-01">
                 </div>
                 <div class="input-group mb-3">
                   <label class="input-group-text" for="end">Ends</label>
-                  <input type="date" class="form-control" id="end" name="end">
+                  <input type="date" class="form-control" id="end" name="end" value="2021-03-31">
                 </div>
                 <div class="col-12">
                   <button type="submit" class="btn btn-primary">Submit</button>
@@ -47,8 +47,8 @@
 <script>
     fetch("/provinces").then(response => response.json())
   .then(data =>{
-    data.forEach(element => {
-    $("#province").append($('<option>').text(element).val(element));
+    data.filter(e => e != null).forEach(element => {
+      $("#province").append($('<option>').text(element).val(element));
     });
   });
   </script>
