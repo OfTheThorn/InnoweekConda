@@ -11,10 +11,29 @@
 
             <div id="container">
 
-                predictor
+              <form method="POST" action="{% url 'predictor' %}">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                  <label class="input-group-text" for="province">Provinces</label>
+                  <select class="form-select" id="province" name="province">
+
+                  </select>
+                </div>
+                <div class="input-group mb-3">
+                  <label class="input-group-text" for="start">Starts</label>
+                  <input type="date" class="form-control" id="start" name="start">
+                </div>
+                <div class="input-group mb-3">
+                  <label class="input-group-text" for="end">Ends</label>
+                  <input type="date" class="form-control" id="end" name="end">
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>            
             </div>
 
-            
+            <img src="{{ url }}">
           </div>
           
            
@@ -26,6 +45,11 @@
   
 
 <script>
- 
+    fetch("/provinces").then(response => response.json())
+  .then(data =>{
+    data.forEach(element => {
+    $("#province").append($('<option>').text(element).val(element));
+    });
+  });
   </script>
 {% endblock %}

@@ -49,7 +49,6 @@ def get_provinces(response):
     arr = df.PROVINCE.unique()
     arr = np.append(["All"], arr)
     js = pd.Series(arr).to_json(orient='values')
-
     return HttpResponse(js)
 
 
@@ -74,10 +73,10 @@ def index(response):
 
 
 def predictor(response):
-    if response.method == "POST":
-        return render(response, "main/predictor.html")
+    if response.method != "POST":
+        return render(response, "main/predictor.html",{"url": "/"})
 
-    province = response.POST.get("province", "All")
+    province = response.POST.get("province","All")
     start = response.POST.get("start", '2020-10-01')
     end = response.POST.get("end", '2021-03-31')
 

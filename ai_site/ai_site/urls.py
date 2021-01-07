@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('provinces', get_provinces),
-    path('/predictor', predictor, name='predictor'),
+    path('predictor', predictor, name='predictor'),
 ]
