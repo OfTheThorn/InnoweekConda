@@ -42,7 +42,7 @@ def fig_to_b64(fig):
     pic_IObytes = io.BytesIO()
     fig.savefig(pic_IObytes, format='png')
     pic_IObytes.seek(0)
-    return base64.b64encode(pic_IObytes.read())
+    return base64.b64encode(pic_IObytes.read()).decode('ascii')
 
 
 def get_provinces(response):
@@ -74,7 +74,7 @@ def index(response):
 
 
 def predictor(response):
-    if response.method == "POST":
+    if response.method != "POST":
         return render(response, "main/predictor.html")
 
     province = response.POST.get("province", "All")
