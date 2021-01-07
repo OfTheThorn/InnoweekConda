@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from website.views import index,predictor
+from website.views import index, predictor, get_provinces
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
+    path('provinces', get_provinces),
     path('/predictor', predictor, name='predictor'),
-
 ]
